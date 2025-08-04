@@ -44,7 +44,7 @@ const Parametre = () => {
   return (
     <>
     <Accuil />
-    <Container sx={{ mt: 4 ,marginTop:'100px'}}>
+    <Container  maxWidth='lg'  sx={{ mt: 12, px:2 ,marginTop: '100px',ml:'300px' }}>
       <Typography variant="h4" gutterBottom>⚙️ Paramètres du Restaurant</Typography>
 
       <TextField

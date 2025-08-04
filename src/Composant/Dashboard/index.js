@@ -65,7 +65,7 @@ const Dashboard = () => {
         <Accueil />
       </Box>
 
-      <Container sx={{ mt: 2, marginTop: '100px' }}>
+      <Container maxWidth='lg' sx={{ mt: 12, px: 2, marginTop: '100px', ml: '300px' }}>
         <Typography variant="h4" gutterBottom>📊 Tableau de Bord</Typography>
         <Typography variant="h6">✅ Quantité Totale Vendue : {totalVendu}</Typography>
 

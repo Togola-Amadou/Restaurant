@@ -53,7 +53,7 @@ const Menu = ({ panier, setPanier }) => {
     <>
       <Box><Accuil /></Box>
 
-      <Container sx={{ marginTop: '100px' }}>
+      <Container maxWidth='lg' sx={{ mt: 12, px: 2, marginTop: '100px' , ml: '300px' }}>
         <Typography variant="h4" gutterBottom>Menu du Restaurant</Typography>
         <Grid container spacing={4}>
           {menu.map((dish) => (

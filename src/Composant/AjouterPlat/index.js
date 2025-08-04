@@ -89,7 +89,7 @@ const AjouterPlat = () => {
   return (
     <>
       <Accuil />
-      <Container sx={{ textAlign: 'center', marginTop: '100px' }}>
+      <Container  maxWidth='lg'  sx={{ mt: 12, px:2 ,marginTop: '100px',ml:'300px' }}>
         <Typography variant="h4" color="primary">Ajouter un Plat</Typography>
         
         <Stack direction="row" spacing={3} mt={3} mb={2}>
