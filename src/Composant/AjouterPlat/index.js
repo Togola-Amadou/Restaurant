@@ -41,7 +41,7 @@ const AjouterPlat = () => {
     const formData = new FormData();
     formData.append("file", imageFile);
     const res = await axios.post("https://apirestaurant-54hu.onrender.com/upload-image/", formData);
-    return res.data.url; // <- "url" correspond à la clé retournée par /upload-image/
+    return res.data.url;
   };
 
   const ajouter = async () => {
@@ -89,14 +89,55 @@ const AjouterPlat = () => {
   return (
     <>
       <Accuil />
-      <Container  maxWidth='lg'  sx={{ mt: 12, px:2 ,marginTop: '100px',ml:'300px' }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          mt: 12,
+          px: 2,
+          marginTop: '100px',
+          ml: { xs: 0, sm: '240px' } // responsive margin left
+        }}
+      >
         <Typography variant="h4" color="primary">Ajouter un Plat</Typography>
-        
-        <Stack direction="row" spacing={3} mt={3} mb={2}>
-          <TextField label="Nom" name="nom" value={form.nom} onChange={handleChange} />
-          <TextField label="Description" name="description" value={form.description} onChange={handleChange} />
-          <TextField label="Prix" name="prix" type="number" value={form.prix} onChange={handleChange} />
-          <TextField label="Quantité" name="quantite" type="number" value={form.quantite} onChange={handleChange} />
+
+        {/* Formulaire responsive */}
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          mt={3}
+          mb={2}
+          flexWrap="wrap"
+        >
+          <TextField
+            fullWidth
+            label="Nom"
+            name="nom"
+            value={form.nom}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
+            label="Description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
+            label="Prix"
+            name="prix"
+            type="number"
+            value={form.prix}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
+            label="Quantité"
+            name="quantite"
+            type="number"
+            value={form.quantite}
+            onChange={handleChange}
+          />
           <FormControlLabel
             control={<Switch checked={form.dispo} name="dispo" onChange={handleChange} />}
             label="Disponible"
@@ -106,7 +147,15 @@ const AjouterPlat = () => {
 
         <Button variant="contained" onClick={ajouter}>Ajouter</Button>
 
-        <TableContainer component={Paper} sx={{ mt: 4, maxHeight: "500px" }}>
+        {/* Tableau responsive */}
+        <TableContainer
+          component={Paper}
+          sx={{
+            mt: 4,
+            maxHeight: "500px",
+            overflowX: 'auto' // important pour mobile
+          }}
+        >
           <Table stickyHeader>
             <TableHead>
               <TableRow>
@@ -119,34 +168,29 @@ const AjouterPlat = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-             {produit.map(p => {
-  console.log("🖼️ image_url reçu :", p.image_url);
-
-  return (
-    <TableRow key={p.id}>
-      <TableCell>{p.nom}</TableCell>
-      <TableCell>{p.description}</TableCell>
-      <TableCell>{p.prix} FCFA</TableCell>
-      <TableCell>{p.quantite}</TableCell>
-     <TableCell>
-<img
-  src={`https://apirestaurant-54hu.onrender.com${p.image_url}`}
-  width="80"
-  alt={p.nom}
-  onError={(e) => {
-    e.target.src = "https://via.placeholder.com/80";
-  }}
-/>
-
-</TableCell>
-
-      <TableCell>
-        <Button color="error" onClick={() => handleDelete(p.id)}>Supprimer</Button>
-      </TableCell>
-    </TableRow>
-  );
-})}
-
+              {produit.map(p => (
+                <TableRow key={p.id}>
+                  <TableCell>{p.nom}</TableCell>
+                  <TableCell>{p.description}</TableCell>
+                  <TableCell>{p.prix} FCFA</TableCell>
+                  <TableCell>{p.quantite}</TableCell>
+                  <TableCell>
+                    <img
+                      src={`https://apirestaurant-54hu.onrender.com${p.image_url}`}
+                      width="80"
+                      alt={p.nom}
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/80";
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Button color="error" onClick={() => handleDelete(p.id)}>
+                      Supprimer
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
